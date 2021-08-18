@@ -1,0 +1,37 @@
+{
+  "name": "{{= it.name }}",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "{{= it.reactVersion }}",
+    "react-native": "{{= it.reactNativeVersion }}"
+    {{~ it.dependencies : dependency }}
+      , "{{= dependency.name }}": "{{= dependency.path }}"
+    {{~}}
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/runtime": "^7.14.8",
+    "@react-native-community/eslint-config": "^3.0.0",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "react-test-renderer": "17.0.1",
+    "typescript": "~4.0.0",
+    "babel-preset-expo": "8.4.1",
+    "@types/jest": "^26.0.4"
+    {{~ it.devDependencies : dependency }}
+    , "{{= dependency.name }}": "{{= dependency.path }}"
+    {{~}}
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

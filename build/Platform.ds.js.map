@@ -1,0 +1,1 @@
+{"version":3,"file":"Platform.ds.js","sourceRoot":"","sources":["../src/Platform.ds.ts"],"names":[],"mappings":";;;AAAA,IAAY,QAGX;AAHD,WAAY,QAAQ;IAClB,qCAAY,CAAA;IACZ,6CAAgB,CAAA;AAClB,CAAC,EAHW,QAAQ,GAAR,gBAAQ,KAAR,gBAAQ,QAGnB","sourcesContent":["export enum Platform {\n  iOS = 1 << 1,\n  Android = 1 << 2,\n}\n"]}

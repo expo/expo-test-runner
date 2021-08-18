@@ -1,0 +1,37 @@
+{
+  "name": "expo-test-runner",
+  "version": "0.0.1",
+  "description": "Script that enchant test experience.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "author": "650 Industries, Inc.",
+  "license": "MIT",
+  "bin": {
+    "expo-test-runner": "bin/expo-test-runner.js"
+  },
+  "scripts": {
+    "build": "tsc --watch --preserveWatchOutput"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@tsconfig/node12": "^1.0.7",
+    "@types/fs-extra": "^9.0.1",
+    "@types/node": "^12",
+    "eslint": "^7.25.0",
+    "eslint-config-universe": "^5.0.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.4",
+    "@types/node-fetch": "^2.5.12"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.9.0",
+    "dot": "^2.0.0-beta.1",
+    "@expo/spawn-async": "^1.5.0",
+    "commander": "^7.2.0",
+    "fs-extra": "^10.0.0",
+    "@expo/xcodegen": "2.18.0-patch.1",
+    "chalk": "^4.1.2",
+    "tempy": "^0.7.1",
+    "node-fetch": "^2.6.1"
+  }
+}

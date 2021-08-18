@@ -1,0 +1,17 @@
+node_modules
+.DS_Store
+.expo
+.eslintcache
+.tags*
+.git-crypt-key
+.npm
+.npm-cache
+npm-debug.log
+*~
+*.log
+.vscode
+.idea/*
+*.swp
+*.swo
+*.tsbuildinfo
+.history

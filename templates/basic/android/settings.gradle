@@ -1,0 +1,10 @@
+rootProject.name = '{{= it.name }}'
+
+// Include Expo modules
+apply from: new File(["node", "--print", "require.resolve('expo-modules-core/package.json')"].execute().text.trim(), "../scripts/autolinking.gradle");
+useExpoModules()
+
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
+applyNativeModulesSettingsGradle(settings)
+
+include ':app'

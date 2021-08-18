@@ -1,0 +1,10 @@
+name: {{= it.name }}
+targets:
+  {{= it.name }}:
+    type: application
+    platform: iOS
+    sources:
+      - path: src
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.testrunner.{{= it.name}}
+      IPHONEOS_DEPLOYMENT_TARGET: "12.0"
