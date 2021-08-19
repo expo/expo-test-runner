@@ -5,4 +5,4 @@
 // It must be set before `supports-color` (`chalk` dependency) module is imported.
 process.env.FORCE_COLOR = 'true';
 
-require('../build')(process.argv.slice(2));
+require('../build');
