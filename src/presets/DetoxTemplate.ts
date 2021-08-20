@@ -63,7 +63,7 @@ export default class DetoxPreset extends PresetTemplate {
 
   override async build(projectPath: string, test: DetoxTest): Promise<void> {
     for (const conf of test.configurations) {
-      await spawnAsync('detox', ['build', '-c', conf], {
+      await spawnAsync('yarn', ['detox', 'build', '-c', conf], {
         cwd: projectPath,
         stdio: 'inherit',
       });
@@ -80,7 +80,7 @@ export default class DetoxPreset extends PresetTemplate {
       }
 
       for (const conf of test.configurations) {
-        await spawnAsync('detox', ['test', '-c', conf, '--ci'], {
+        await spawnAsync('yarn', ['detox', 'test', '-c', conf, '--ci'], {
           cwd: projectPath,
           stdio: 'inherit',
         });

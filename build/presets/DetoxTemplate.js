@@ -56,7 +56,7 @@ class DetoxPreset extends PresetTemplate_1.default {
     }
     async build(projectPath, test) {
         for (const conf of test.configurations) {
-            await spawn_async_1.default('detox', ['build', '-c', conf], {
+            await spawn_async_1.default('yarn', ['detox', 'build', '-c', conf], {
                 cwd: projectPath,
                 stdio: 'inherit',
             });
@@ -70,7 +70,7 @@ class DetoxPreset extends PresetTemplate_1.default {
                 await bundler.start();
             }
             for (const conf of test.configurations) {
-                await spawn_async_1.default('detox', ['test', '-c', conf, '--ci'], {
+                await spawn_async_1.default('yarn', ['detox', 'test', '-c', conf, '--ci'], {
                     cwd: projectPath,
                     stdio: 'inherit',
                 });
