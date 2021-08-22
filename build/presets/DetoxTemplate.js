@@ -71,7 +71,7 @@ class DetoxPreset extends PresetTemplate_1.default {
                 await bundler.start();
             }
             for (const conf of test.configurations) {
-                await spawn_async_1.default('yarn', ['detox', 'test', '-c', conf, '--ci'], {
+                await spawn_async_1.default('yarn', ['detox', 'test', '-c', conf, '--ci', '--headless', '--gpu', 'swiftshader_indirect'], {
                     cwd: projectPath,
                     stdio: 'inherit',
                 });

@@ -81,10 +81,14 @@ export default class DetoxPreset extends PresetTemplate {
       }
 
       for (const conf of test.configurations) {
-        await spawnAsync('yarn', ['detox', 'test', '-c', conf, '--ci'], {
-          cwd: projectPath,
-          stdio: 'inherit',
-        });
+        await spawnAsync(
+          'yarn',
+          ['detox', 'test', '-c', conf, '--ci', '--headless', '--gpu', 'swiftshader_indirect'],
+          {
+            cwd: projectPath,
+            stdio: 'inherit',
+          }
+        );
 
         await killVirtualDevicesAsync(this.platform);
       }
