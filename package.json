@@ -1,7 +1,7 @@
 {
   "name": "expo-test-runner",
   "version": "0.0.4",
-  "description": "Script that enchant test experience.",
+  "description": "Script that enchants test experience.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "author": "650 Industries, Inc.",
