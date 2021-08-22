@@ -9,6 +9,14 @@
   "bin": {
     "expo-test-runner": "bin/expo-test-runner.js"
   },
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/expo/expo-test-runner.git"
+	},
+  "bugs": {
+		"url": "https://github.com/expo/expo-test-runner/issues"
+	},
+	"homepage": "https://github.com/expo/expo-test-runner#readme",
   "scripts": {
     "build": "tsc --watch --preserveWatchOutput"
   },
