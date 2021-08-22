@@ -7,4 +7,4 @@ export interface DefaultOptions {
     path: string;
     shouldBeCleaned: boolean;
 }
-export declare function registerCommand<OptionsType extends DefaultOptions>(commander: CommanderStatic, commandName: string, fn: (config: Config, options: OptionsType) => any): import("commander").Command;
+export declare function registerCommand<OptionsType extends DefaultOptions>(commander: CommanderStatic, commandName: string, fn: (config: Config, options: OptionsType) => Promise<any>): import("commander").Command;

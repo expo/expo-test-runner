@@ -27,7 +27,7 @@ function mapPlatform(platform: string): Platform {
 export function registerCommand<OptionsType extends DefaultOptions>(
   commander: CommanderStatic,
   commandName: string,
-  fn: (config: Config, options: OptionsType) => any
+  fn: (config: Config, options: OptionsType) => Promise<any>
 ) {
   return commander
     .command(commandName)
@@ -52,6 +52,12 @@ export function registerCommand<OptionsType extends DefaultOptions>(
 
       const options = providedOptions as OptionsType;
       const configReader = new ConfigReader(options.configFile);
-      fn(configReader.readConfigFile(), options);
+
+      try {
+        await fn(configReader.readConfigFile(), options);
+      } catch (e) {
+        console.error(e);
+        process.exit(1);
+      }
     });
 }

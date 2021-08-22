@@ -5,6 +5,7 @@ import BundlerController from '../BundlerController';
 import { Dependency, DetoxTest } from '../Config';
 import { Platform } from '../Platform';
 import { ProjectFile, TemplateFilesFactory, UserFile } from '../TemplateFile';
+import { killVirtualDevicesAsync } from '../Utils';
 import PresetTemplate from './PresetTemplate';
 
 export default class DetoxPreset extends PresetTemplate {
@@ -84,6 +85,8 @@ export default class DetoxPreset extends PresetTemplate {
           cwd: projectPath,
           stdio: 'inherit',
         });
+
+        await killVirtualDevicesAsync(this.platform);
       }
     } finally {
       // If bundler wasn't started is noop.

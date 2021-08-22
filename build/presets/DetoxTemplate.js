@@ -7,6 +7,7 @@ const spawn_async_1 = __importDefault(require("@expo/spawn-async"));
 const BundlerController_1 = __importDefault(require("../BundlerController"));
 const Platform_1 = require("../Platform");
 const TemplateFile_1 = require("../TemplateFile");
+const Utils_1 = require("../Utils");
 const PresetTemplate_1 = __importDefault(require("./PresetTemplate"));
 class DetoxPreset extends PresetTemplate_1.default {
     getDependencies() {
@@ -74,6 +75,7 @@ class DetoxPreset extends PresetTemplate_1.default {
                     cwd: projectPath,
                     stdio: 'inherit',
                 });
+                await Utils_1.killVirtualDevicesAsync(this.platform);
             }
         }
         finally {

@@ -58,7 +58,13 @@ function registerCommand(commander, commandName, fn) {
         providedOptions.configFile = ConfigReader_1.default.getFilePath(providedOptions.configFile);
         const options = providedOptions;
         const configReader = new ConfigReader_1.default(options.configFile);
-        fn(configReader.readConfigFile(), options);
+        try {
+            await fn(configReader.readConfigFile(), options);
+        }
+        catch (e) {
+            console.error(e);
+            process.exit(1);
+        }
     });
 }
 exports.registerCommand = registerCommand;
