@@ -11,8 +11,8 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 
-import expo.modules.adapters.react.ApplicationLifecycleDispatcher;
-import expo.modules.adapters.react.ReactNativeHostWrapper;
+import expo.modules.ApplicationLifecycleDispatcher;
+import expo.modules.ReactNativeHostWrapper;
 
 import java.util.List;
 
