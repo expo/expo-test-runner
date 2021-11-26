@@ -15,7 +15,7 @@ class DetoxPreset extends PresetTemplate_1.default {
             ...super.getDependencies(),
             {
                 name: 'detox',
-                path: '18.20.1',
+                path: '19.1.0',
             },
         ];
     }
