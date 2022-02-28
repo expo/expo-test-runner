@@ -4,7 +4,6 @@ import { ProjectFile } from '../TemplateFile';
 import PresetTemplate from './PresetTemplate';
 export default class DetoxPreset extends PresetTemplate {
     getDependencies(): Dependency[];
-    getDevDependencies(): Dependency[];
     getDefinitions(): Definitions;
     getTemplateFiles(): {
         [path: string]: ProjectFile;

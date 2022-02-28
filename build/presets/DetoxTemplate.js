@@ -19,15 +19,6 @@ class DetoxPreset extends PresetTemplate_1.default {
             },
         ];
     }
-    getDevDependencies() {
-        return [
-            ...super.getDevDependencies(),
-            {
-                name: '@types/react-native',
-                path: this.config.reactNativeVersion,
-            },
-        ];
-    }
     getDefinitions() {
         return {
             ...super.getDefinitions(),
