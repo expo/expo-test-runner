@@ -90,24 +90,21 @@ export default class PresetTemplate {
     if (this.config.android?.mainApplication) {
       overrides['android/app/src/main/java/com/testrunner/MainApplication.java'] = new UserFile(
         this.userFilePath(this.config.android.mainApplication),
-        Platform.Android,
-        false
+        Platform.Android
       );
     }
 
     if (this.config.ios?.appDelegateHeader) {
       overrides['ios/src/AppDelegate.h'] = new UserFile(
         this.userFilePath(this.config.ios.appDelegateHeader),
-        Platform.iOS,
-        false
+        Platform.iOS
       );
     }
 
     if (this.config.ios?.appDelegate) {
       overrides['ios/src/AppDelegate.m'] = new UserFile(
         this.userFilePath(this.config.ios.appDelegate),
-        Platform.iOS,
-        false
+        Platform.iOS
       );
     }
 

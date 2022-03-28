@@ -42,7 +42,7 @@ class DetoxPreset extends PresetTemplate_1.default {
             'android/app/build.gradle': tff.androidFile(),
             'android/app/src/androidTest/java/com/testrunner/DetoxTest.java': tff.androidFile(),
             'index.js': tff.file(true),
-            [this.config.detoxConfigFile]: new TemplateFile_1.UserFile(this.userFilePath(this.config.detoxConfigFile)),
+            [this.config.detoxConfigFile]: new TemplateFile_1.UserFile(this.userFilePath(this.config.detoxConfigFile), Platform_1.Platform.Both, true),
             ...additionalFiles,
         };
     }

@@ -84,13 +84,13 @@ class PresetTemplate {
             overrides['android/app/src/main/java/com/testrunner/MainActivity.java'] = new TemplateFile_1.UserFile(this.userFilePath(this.config.android.mainActivity), Platform_1.Platform.Android);
         }
         if ((_b = this.config.android) === null || _b === void 0 ? void 0 : _b.mainApplication) {
-            overrides['android/app/src/main/java/com/testrunner/MainApplication.java'] = new TemplateFile_1.UserFile(this.userFilePath(this.config.android.mainApplication), Platform_1.Platform.Android, false);
+            overrides['android/app/src/main/java/com/testrunner/MainApplication.java'] = new TemplateFile_1.UserFile(this.userFilePath(this.config.android.mainApplication), Platform_1.Platform.Android);
         }
         if ((_c = this.config.ios) === null || _c === void 0 ? void 0 : _c.appDelegateHeader) {
-            overrides['ios/src/AppDelegate.h'] = new TemplateFile_1.UserFile(this.userFilePath(this.config.ios.appDelegateHeader), Platform_1.Platform.iOS, false);
+            overrides['ios/src/AppDelegate.h'] = new TemplateFile_1.UserFile(this.userFilePath(this.config.ios.appDelegateHeader), Platform_1.Platform.iOS);
         }
         if ((_d = this.config.ios) === null || _d === void 0 ? void 0 : _d.appDelegate) {
-            overrides['ios/src/AppDelegate.m'] = new TemplateFile_1.UserFile(this.userFilePath(this.config.ios.appDelegate), Platform_1.Platform.iOS, false);
+            overrides['ios/src/AppDelegate.m'] = new TemplateFile_1.UserFile(this.userFilePath(this.config.ios.appDelegate), Platform_1.Platform.iOS);
         }
         return {
             'babel.config.js': tff.file(),
