@@ -152,11 +152,11 @@ export default class PresetTemplate {
     );
   }
 
-  private async copyFilesAsync(projectPath: string, files: { [path: string]: ProjectFile }) {
+  protected async copyFilesAsync(projectPath: string, files: { [path: string]: ProjectFile }) {
     await Promise.all(Object.entries(files).map(([path, file]) => file.copy(projectPath, path)));
   }
 
-  private async evaluateFiles(projectPath: string, files: { [path: string]: ProjectFile }) {
+  protected async evaluateFiles(projectPath: string, files: { [path: string]: ProjectFile }) {
     const templateEvaluator = new TemplateEvaluator(this.getDefinitions());
     await Promise.all(
       Object.entries(files).map(([path, file]) =>

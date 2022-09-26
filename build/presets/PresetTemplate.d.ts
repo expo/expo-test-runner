@@ -19,7 +19,11 @@ export default class PresetTemplate {
     };
     protected userFilePath(relativePath: string): string;
     private resolveDependencies;
-    private copyFilesAsync;
-    private evaluateFiles;
+    protected copyFilesAsync(projectPath: string, files: {
+        [path: string]: ProjectFile;
+    }): Promise<void>;
+    protected evaluateFiles(projectPath: string, files: {
+        [path: string]: ProjectFile;
+    }): Promise<void>;
     private resolvePath;
 }

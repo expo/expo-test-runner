@@ -3,7 +3,7 @@ import { CommanderStatic } from 'commander';
 import * as fs from 'fs-extra';
 
 import { Application, Config } from '../Config';
-import DetoxPreset from '../presets/DetoxTemplate';
+import DetoxPreset from '../presets/CEATemplate';
 import { DefaultOptions, registerCommand } from '../registerCommand';
 
 interface RunTestOptions extends DefaultOptions {
