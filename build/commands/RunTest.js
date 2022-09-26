@@ -24,7 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = __importDefault(require("chalk"));
 const fs = __importStar(require("fs-extra"));
-const CEATemplate_1 = __importDefault(require("../presets/CEATemplate"));
+const TemplateProject_1 = __importDefault(require("../TemplateProject"));
 const registerCommand_1 = require("../registerCommand");
 function findTest(config, test) {
     for (const appName in config.applications) {
@@ -42,7 +42,7 @@ async function runTestAsync(config, options) {
     const test = app.tests[options.test];
     if (app.preset === 'detox') {
         console.log(`Using ${chalk_1.default.green('detox')} preset.`);
-        const preset = new CEATemplate_1.default(app, appName, options.platform, options.configFile);
+        const preset = new TemplateProject_1.default(app, appName, options.platform, options.configFile);
         console.log(`Creating test app in ${chalk_1.default.green(options.path)}.`);
         await preset.createApplicationAsync(options.path);
         console.log(`Building app.`);

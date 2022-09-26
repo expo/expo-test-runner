@@ -3,7 +3,7 @@ import { CommanderStatic } from 'commander';
 import * as fs from 'fs-extra';
 
 import { Application, Config } from '../Config';
-import DetoxPreset from '../presets/CEATemplate';
+import TemplateProject from '../TemplateProject';
 import { DefaultOptions, registerCommand } from '../registerCommand';
 
 interface RunTestOptions extends DefaultOptions {
@@ -30,7 +30,7 @@ async function runTestAsync(config: Config, options: RunTestOptions) {
 
   if (app.preset === 'detox') {
     console.log(`Using ${chalk.green('detox')} preset.`);
-    const preset = new DetoxPreset(app, appName, options.platform, options.configFile);
+    const preset = new TemplateProject(app, appName, options.platform, options.configFile);
 
     console.log(`Creating test app in ${chalk.green(options.path)}.`);
     await preset.createApplicationAsync(options.path);

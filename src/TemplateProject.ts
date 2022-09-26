@@ -3,19 +3,29 @@ import { Definitions } from 'dot';
 import fs from 'fs';
 import path from 'path';
 
-import { Platform } from '../Platform';
-import { ProjectFile, TemplateFilesFactory, UserFile } from '../TemplateFile';
-import DetoxTemplate from './DetoxTemplate';
+import BundlerController from './BundlerController';
+import { Application, DetoxTest } from './Config';
+import { Platform } from './Platform';
+import TemplateEvaluator from './TemplateEvaluator';
+import { ProjectFile, TemplateFilesFactory, UserFile } from './TemplateFile';
+import { killVirtualDevicesAsync } from './Utils';
 
-export default class CEATemplate extends DetoxTemplate {
-  override getDefinitions(): Definitions {
+export default class TemplateProject {
+  constructor(
+    protected config: Application,
+    protected name: string,
+    protected platform: Platform,
+    protected configFilePath: string
+  ) {}
+
+  getDefinitions(): Definitions {
     return {
       name: 'devcliente2e',
       appEntryPoint: 'e2e/app/App',
     };
   }
 
-  override async createApplicationAsync(projectPath: string) {
+  async createApplicationAsync(projectPath: string) {
     // TODO: this assumes there is a parent folder
     const parentFolder = path.resolve(projectPath, '..');
     if (!fs.existsSync(parentFolder)) {
@@ -99,8 +109,8 @@ export default class CEATemplate extends DetoxTemplate {
     });
   }
 
-  override getTemplateFiles(): { [path: string]: ProjectFile } {
-    const tff = new TemplateFilesFactory('detox-cea');
+  getTemplateFiles(): { [path: string]: ProjectFile } {
+    const tff = new TemplateFilesFactory('detox');
 
     const additionalFiles: { [path: string]: ProjectFile } = this.config.additionalFiles?.reduce(
       (reducer, file) => ({
@@ -129,5 +139,58 @@ export default class CEATemplate extends DetoxTemplate {
       ),
       ...additionalFiles,
     };
+  }
+
+  protected userFilePath(relativePath: string): string {
+    return path.join(this.configFilePath, '..', relativePath);
+  }
+
+  protected async copyFilesAsync(projectPath: string, files: { [path: string]: ProjectFile }) {
+    await Promise.all(Object.entries(files).map(([path, file]) => file.copy(projectPath, path)));
+  }
+
+  protected async evaluateFiles(projectPath: string, files: { [path: string]: ProjectFile }) {
+    const templateEvaluator = new TemplateEvaluator(this.getDefinitions());
+    await Promise.all(
+      Object.entries(files).map(([path, file]) =>
+        file.evaluate(projectPath, path, templateEvaluator)
+      )
+    );
+  }
+
+  async build(projectPath: string, test: DetoxTest): Promise<void> {
+    for (const conf of test.configurations) {
+      await spawnAsync('yarn', ['detox', 'build', '-c', conf], {
+        cwd: projectPath,
+        stdio: 'inherit',
+      });
+    }
+  }
+
+  async run(projectPath: string, test: DetoxTest): Promise<void> {
+    let bundler: BundlerController | undefined;
+    try {
+      bundler = new BundlerController(projectPath);
+
+      if (test.shouldRunBundler) {
+        await bundler.start();
+      }
+
+      for (const conf of test.configurations) {
+        await spawnAsync(
+          'yarn',
+          ['detox', 'test', '-c', conf, '--ci', '--headless', '--gpu', 'swiftshader_indirect'],
+          {
+            cwd: projectPath,
+            stdio: 'inherit',
+          }
+        );
+
+        await killVirtualDevicesAsync(this.platform);
+      }
+    } finally {
+      // If bundler wasn't started is noop.
+      await bundler?.stop();
+    }
   }
 }

@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { CommanderStatic } from 'commander';
 
 import { Config } from '../Config';
-import DetoxPreset from '../presets/DetoxTemplate';
+import TemplateProject from '../TemplateProject';
 import { DefaultOptions, registerCommand } from '../registerCommand';
 
 interface CreateProjectOptions extends DefaultOptions {
@@ -14,7 +14,7 @@ async function createProjectAsync(config: Config, options: CreateProjectOptions)
 
   if (app.preset === 'detox') {
     console.log(`Using ${chalk.green('detox')} preset.`);
-    const preset = new DetoxPreset(app, options.app, options.platform, options.configFile);
+    const preset = new TemplateProject(app, options.app, options.platform, options.configFile);
 
     console.log(`Creating test app in ${chalk.green(options.path)}.`);
     await preset.createApplicationAsync(options.path);
